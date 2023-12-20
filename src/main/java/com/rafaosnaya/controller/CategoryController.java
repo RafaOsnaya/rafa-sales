@@ -1,5 +1,6 @@
 package com.rafaosnaya.controller;
 
+import com.rafaosnaya.exception.ModelNotFoundException;
 import com.rafaosnaya.model.Category;
 import com.rafaosnaya.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ public class CategoryController {
     @GetMapping("/{id}")
     public ResponseEntity<Category>  readById(@PathVariable("id") Integer id) throws Exception {
         Category obj = service.readById(id);
+        if (obj == null){
+            throw new ModelNotFoundException("ID not found: " + id);}
         return new ResponseEntity<>(obj, HttpStatus.OK);
     }
 
@@ -53,6 +56,9 @@ public class CategoryController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws Exception {
+        Category obj = service.readById(id);
+        if (obj == null){
+            throw new ModelNotFoundException("ID not found: " + id);}
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
