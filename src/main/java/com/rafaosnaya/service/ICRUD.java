@@ -1,4 +1,4 @@
-package com.rafaosnaya.service.impl;
+package com.rafaosnaya.service;
 
 import java.util.List;
 

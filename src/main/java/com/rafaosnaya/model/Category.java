@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "tbl_category")
+//@Table(name = "tbl_category")
 public class Category {
 
     @EqualsAndHashCode.Include

@@ -1,17 +1,17 @@
 package com.rafaosnaya.service;
 
 
-import com.rafaosnaya.model.Category;
-
-import java.util.List;
+import com.rafaosnaya.model.Client;
 
 
-public interface IClientService {
 
-    Category save(Category category) throws Exception;
-    Category update(Category category) throws Exception;
-    List<Category> readAll() throws Exception;
-    Category readById(Integer id) throws Exception;
-    void delete(Integer id) throws Exception;
+
+public interface IClientService extends ICRUD<Client, Integer>{
+
+/*    Client save(Client Client) throws Exception;
+    Client update(Client Client) throws Exception;
+    List<Client> readAll() throws Exception;
+    Client readById(Integer id) throws Exception;
+    void delete(Integer id) throws Exception;*/
 
 }

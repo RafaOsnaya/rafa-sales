@@ -3,6 +3,8 @@ package com.rafaosnaya.controller;
 import com.rafaosnaya.model.Category;
 import com.rafaosnaya.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,23 +16,32 @@ public class CategoryController {
     @Autowired
     private ICategoryService service;
 
-    @GetMapping
+/*    @GetMapping
     public List<Category> readAll() throws Exception {
         return service.readAll();
+    }*/
+
+    @GetMapping
+    public ResponseEntity<List<Category>> readAll() throws Exception {
+        List<Category> list = service.readAll();
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Category readById(@PathVariable("id") Integer id) throws Exception {
-        return service.readById(id);
+    public ResponseEntity<Category>  readById(@PathVariable("id") Integer id) throws Exception {
+        Category obj = service.readById(id);
+        return new ResponseEntity<>(obj, HttpStatus.OK);
     }
 
     @PostMapping
-    public Category save(@RequestBody Category category) throws Exception {
-        return service.save(category);
+    public ResponseEntity<Category> save(@RequestBody Category category) throws Exception {
+        Category obj = service.save(category);
+        return new ResponseEntity<>(obj, HttpStatus.CREATED);
     }
     @PutMapping
-    public Category update(@RequestBody Category category) throws Exception {
-        return service.update(category);
+    public ResponseEntity<Category> update(@RequestBody Category category) throws Exception {
+        Category obj = service.update(category);
+        return new ResponseEntity<>(obj, HttpStatus.OK);
     }
 
     //Put mandando el id en la url
@@ -41,8 +52,9 @@ public class CategoryController {
     }*/
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Integer id) throws Exception {
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws Exception {
         service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

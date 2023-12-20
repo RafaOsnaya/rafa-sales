@@ -2,9 +2,9 @@ package com.rafaosnaya.repo;
 
 import com.rafaosnaya.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.NoRepositoryBean;
 
-@Repository
-public interface IGenericRepo extends JpaRepository<Category, Integer> {
+@NoRepositoryBean
+public interface IGenericRepo<T, ID> extends JpaRepository<T, ID> {
 
 }

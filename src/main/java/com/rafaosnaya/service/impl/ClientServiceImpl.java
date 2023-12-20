@@ -1,44 +1,48 @@
 package com.rafaosnaya.service.impl;
 
-import com.rafaosnaya.model.Category;
-import com.rafaosnaya.repo.ICategoryRepo;
-import com.rafaosnaya.service.ICategoryService;
+import com.rafaosnaya.model.Client;
+import com.rafaosnaya.repo.IClientRepo;
+import com.rafaosnaya.repo.IGenericRepo;
+import com.rafaosnaya.service.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class ClientServiceImpl implements ICategoryService{
+public class ClientServiceImpl extends CRUDImpl<Client, Integer> implements IClientService {
 
     @Autowired
-    private ICategoryRepo repo;
+    private IClientRepo repo;
 
     @Override
-    public Category save(Category category) throws Exception {
+    IGenericRepo<Client, Integer> getRepo() {
+        return repo;
+    }
+
+/*    @Override
+    public Client save(Client category) throws Exception {
         return repo.save(category);
     }
 
     @Override
-    public Category update(Category category) throws Exception {
+    public Client update(Client category) throws Exception {
         return repo.save(category);
     }
 
     @Override
-    public List<Category> readAll() throws Exception {
+    public List<Client> readAll() throws Exception {
         return repo.findAll();
     }
 
     @Override
-    public Category readById(Integer id) throws Exception {
+    public Client readById(Integer id) throws Exception {
         //return repo.findById(id).get();
-        //Optional<Category> op = repo.findById(id);
-        //return op.isPresent() ? op.get() : new Category();
-        return repo.findById(id).orElse(new Category());
+        //Optional<Client> op = repo.findById(id);
+        //return op.isPresent() ? op.get() : new Client();
+        return repo.findById(id).orElse(new Client());
     }
 
     @Override
     public void delete(Integer id) throws Exception {
         repo.deleteById(id);
-    }
+    }*/
 }
